@@ -1,6 +1,6 @@
-import {eventEmitter} from './EventEmitter';
+import eventEmitter from './EventEmitter';
 
-class movieClass extends eventEmitter{
+export default class movieClass extends eventEmitter{
   constructor(title, year, duration){
     super();
     this.title = title;
@@ -8,17 +8,20 @@ class movieClass extends eventEmitter{
     this.duration = duration;
     this.cast =  [];
   }
-play(){
-  super.emit(this, 'play');
+
+  play(){
+    super.emit(this, 'play');
+  }
+
+  pause(){
+    super.emit(this, 'pause');
+  }
+
+  resume(){
+    super.emit(this, 'resume');
+  }
+
+  addCast(actors){
+    this.cast = this.cast.concat(actors);
+  }
 }
-pause(){
-  super.emit(this, 'pause');
-}
-resume(){
-  super.emit(this, 'resume');
-}
-addCast(actors){
-  this.cast = this.cast.concat(actors);
-}
-}
-export {movieClass}

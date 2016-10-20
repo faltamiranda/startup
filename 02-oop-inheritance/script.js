@@ -1,9 +1,10 @@
-import {eventEmitter} from "./modules/EventEmitter";
-import {logger} from "./modules/Logger";
-import {movieClass} from "./modules/MovieClass";
-import {actor} from "./modules/Actor";
+import eventEmitter from "./modules/EventEmitter";
+import logger from "./modules/Logger";
+import movieClass from "./modules/MovieClass";
+import actor from "./modules/Actor";
 
 let mylogger = new logger;
+
 let Social = {
   share: function(friendName){
     console.log("share", this.title, "with", friendName);
@@ -12,6 +13,7 @@ let Social = {
     console.log(friendName, "likes", this.title);
   }
 }
+
 let terminator = new movieClass('The Terminator', '1984' , '1h 47min');
 let godfather = new movieClass('The Godfather', '1972' , '2h 55min');
 let taxidriver = new movieClass('Taxi Driver', '1976' , '1h 54m');
