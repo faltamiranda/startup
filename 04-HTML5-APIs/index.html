@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Topic4</title>
+    <script src="script.js" type="text/javascript"></script>
+    <script src="dragandrop.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+    <label>Enter text for be saved or deleted</label>
+    <textarea id="saveServer" placeholder="enter here"></textarea>
+    <br/>
+    <input type="button" onclick="saveDataLS()" value="Save with LocalStorage"/>
+    <input type="button" onclick="dataClearLS()" value="Clear LocalStorage"/>
+    <br/>
+    <br/>
+    <input type="button" onclick="saveDataIDB()" value="Save with IndexedDB."/>
+    <input type="button" onclick="dataClearIDB()" value="Clear IndexedDB"/>
+    <br/>
+    <br/>
+    <textarea id="drop_zone">Drop files here</textarea>
+  </body>
+</html>
