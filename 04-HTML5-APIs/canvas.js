@@ -1,7 +1,4 @@
 window.onload = function () {
-      let x = 20;
-      let y = 20;
-      let speed = 2;
 
       let square=document.getElementById("square");
       let contextSquare=square.getContext("2d");
@@ -43,34 +40,21 @@ window.onload = function () {
       contextRectangle.stroke();
       contextRectangle.fillStyle = getRndColor();
       contextRectangle.fill();
-          function animate() {
-            reqAnimFrame = window.mozRequestAnimationFrame    ||
-                          window.webkitRequestAnimationFrame ||
-                          window.msRequestAnimationFrame     ||
-                          window.oRequestAnimationFrame
-                          ;
-
-              reqAnimFrame(animate);
-
-              x += speed;
-
-              if(x <= 0 || x >= 475){
-                  speed = -speed;
-              }
-                    draw();
+      let start = null;
+      let animatedRectangle = document.getElementById("animatedRectangle");
+      animatedRectangle.style.position = 'absolute';
+      function step(timestamp) {
+          if (!start) start = timestamp;
+          let progress = timestamp - start;
+          animatedRectangle.style.left = Math.min(progress/25, 200) + "px";
+          if (progress < 2000) {
+              window.requestAnimationFrame(step);
           }
-          function draw(){
-              console.log("entro");
-              let animatedRectangle = document.getElementById('animatedRectangle');
-              let contextAnimatedRectangle = animatedRectangle.getContext('2d');
-              contextAnimatedRectangle.fillRect(50, 50, 100, 100);
-              contextAnimatedRectangle.lineWidth = 10;
-              contextAnimatedRectangle.strokeStyle = getRndColor();
+      }
+      window.requestAnimationFrame(step);
 
-              contextAnimatedRectangle.fillStyle = getRndColor();
-              }
-          animate();
-  }
+}
+
 
 function getRndColor() {
     var r = 255*Math.random()|0,
