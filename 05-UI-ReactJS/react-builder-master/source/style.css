@@ -1,4 +1,16 @@
-.hello-world {
-    font-size: 20px;
-    font-family: arial;
+html,body {
+   height: 100%;
+   width: 100%;
+}
+
+#left{
+  height:95%;
+ width:45%;
+ float:left;
+}
+#right {
+  height:95%;
+ width:45%;
+ float:left;
+ text-align:center;
 }

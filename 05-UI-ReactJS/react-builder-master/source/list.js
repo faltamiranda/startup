@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './button';
 
 class List extends React.Component {
  constructor (props) {
@@ -10,30 +11,32 @@ class List extends React.Component {
  render() {
    return (
      <ul>
-       {this.renderItems()}
+       {this.renderItems() }
      </ul>
    );
  }
 
+ editMovie(index){
+    let mo = JSON.parse(localStorage.getItem("movies"))
+    console.log(index);
+    console.log(mo[index].title);
+}
+
  renderItems () {
-   let favourites = this.props.movies.filter( function(item) {
-     return item.fav;
-   })
-   console.log(favourites);
-   return favourites.map(this.renderItem);
- }
+    if (localStorage.getItem("movies") !== null){
+      let mov = this.props.movies
+      return mov.map(this.renderItem)
+    }
+}
 
  renderItem (item, index) {
    return (
      <li key={index}>
-       {`Title: ${item.title} Year: ${item.year} Duration: ${item.duration}`}
+       {`Title: ${item.title} - Year: ${item.year} - Duration: ${item.duration} - Favorite:${item.fav}`}
+       <Button buttonClick={this.editMovie.bind(this, index)} buttonId="editButton" buttonValue="Edit the movie" />
      </li>
    );
  }
-}
-//
-// List.propTypes = {
-//  movies: React.PropTypes.array.isRequired
-// };
+};
 
 export default List;

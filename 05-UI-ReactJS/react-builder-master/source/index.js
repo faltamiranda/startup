@@ -41,33 +41,35 @@ class Application extends React.Component{
   }
 
   getMovies () {
-     let movies = localStorage.getItem("movies") || [];
-     return JSON.parse(movies);
-   }
+    if (localStorage.getItem("movies") === null){
+    let movies = [];
+    }
+    else {
+      let movies = localStorage.getItem("movies");
+      return JSON.parse(movies);
 
-  editMovie(){
-
-  }
+    }
+ }
 
   render() {
     return (
       <div>
-        <Label value="Add or see your favorite Movie" />
-        <Input inputType="text" inputId="title" inputHolder="Enter the title" />
-        <Input inputType="text" inputId="year" inputHolder="Enter the year" />
-        <Input inputType="text" inputId="duration" inputHolder="Enter the duration" />
-        <Label value= "Favorite" />
-        <Input inputType="checkbox" inputId="myCheck" />
-        <Button buttonClick={this.addMovie} buttonId="addButton" buttonValue="Add your movie" />
-        <Button buttonClick={this.movieClear} buttonId="clearButton" buttonValue="Clear texts" />
-        <br />
-        <Button  buttonClick={this.showMovie} buttonId="showButton" buttonValue="Show your movies" />
-        <br />
-        <Button buttonClick={this.editMovie} buttonId="editButton" buttonValue="Edit the movie" />
-        <div>
-        <List movies={this.getMovies()} />
+        <div id="left">
+          <h2><Label value="Add or see your favorite Movie" /></h2>
+          <Input inputType="text" inputId="title" inputHolder="Enter the title" />
+          <Input inputType="text" inputId="year" inputHolder="Enter the year" />
+          <Input inputType="text" inputId="duration" inputHolder="Enter the duration" />
+          <h3><Label value= "Favorite" /></h3>
+          <Input inputType="checkbox" inputId="myCheck" />
+          <Button buttonClick={this.addMovie} buttonId="addButton" buttonValue="Add your movie" />
+          <Button buttonClick={this.movieClear} buttonId="clearButton" buttonValue="Clear texts" />
+      </div>
+        <div id="right">
+          <h1><Label value= "All Movies" /></h1>
+          <List movies={this.getMovies()} />
         </div>
       </div>
+
     ) ;
   }
 
