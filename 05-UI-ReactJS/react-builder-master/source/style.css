@@ -3,14 +3,24 @@ html,body {
    width: 100%;
 }
 
-#left{
-  height:95%;
- width:45%;
- float:left;
+.button{
+  background-color: #555555;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
 }
-#right {
-  height:95%;
- width:45%;
- float:left;
- text-align:center;
+
+#deleteButton{
+    background-color: #555555;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
 }

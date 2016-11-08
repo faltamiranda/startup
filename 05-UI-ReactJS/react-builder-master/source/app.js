@@ -17,20 +17,28 @@ getMov(){
   }
 }
 getTitle(){
-  let movie= this.getMov();
-  return movie.title;
+  if (this.props.params.index){
+    let movie= this.getMov();
+    return movie.title;
+  }
 }
 getYear(){
-  let movie= this.getMov();
-  return movie.year;
+  if (this.props.params.index){
+    let movie= this.getMov();
+    return movie.year;
+  }
 }
 getDuration(){
-  let movie= this.getMov();
-  return movie.duration;
+  if (this.props.params.index){
+    let movie= this.getMov();
+    return movie.duration;
+  }
 }
 getFav(){
-  let movie= this.getMov();
-  return movie.fav;
+  if (this.props.params.index){
+    let movie= this.getMov();
+    return movie.fav;
+  }
 }
   render() {
     return (

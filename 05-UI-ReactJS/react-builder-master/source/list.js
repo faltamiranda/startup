@@ -27,13 +27,13 @@ class List extends React.Component {
  }
 
  getMovies () {
- let movies = [];
+   let movies = [];
 
- if (localStorage.getItem('movies')) {
-    movies = JSON.parse(localStorage.getItem('movies'));
- }
+   if (localStorage.getItem('movies')) {
+      movies = JSON.parse(localStorage.getItem('movies'));
+   }
 
- return movies.map(this.renderItem)
+   return movies.map(this.renderItem)
  }
 
  delete(index){
@@ -41,18 +41,15 @@ class List extends React.Component {
    store.dispatch(deleteMovie(index));
    }
 
- edit(index){
-
-
-   }
-
  renderItem (item, index) {
    return (
      <li key={index}>
+      <div id="container">
        {`Title: ${item.title} - Year: ${item.year} - Duration: ${item.duration} - Favorite:${item.fav}`}
        <br/>
-       <Link to={`app/${index}`}> EDIT </Link>
+       <Link  className="button" to={`app/${index}`}> EDIT </Link>
        <Link to="/list"><Button buttonClick={this.delete.bind(this, index)} buttonId="deleteButton" buttonValue="Delete the movie" /></Link>
+       </div>
      </li>
    );
  }

@@ -9,7 +9,7 @@ class Input extends React.Component {
   render() {
     return (
       <div>
-        <input type={this.props.inputType} defaultValue={this.props.inputValue} id={this.props.inputId} placeholder={this.props.inputHolder} />
+        <input type={this.props.inputType} defaultChecked={this.props.inputCheck} defaultValue={this.props.inputValue} className={this.props.class} id={this.props.inputId} placeholder={this.props.inputHolder} />
       </div>
     );
   }
