@@ -31,7 +31,7 @@ let config = {
 		]
 	},
 	css: {
-		main: './source/**/*.css',
+		main: './source/style.css',
 		name: 'style.css',
 		destination: './dist/',
 		watch: [
