@@ -6,19 +6,34 @@ import React from 'react';
 import store from '../applications/store';
 
 class Series extends React.Component{
-  constructor() {
-  super();
-  }
+    constructor() {
+    super();
+    this.state = { series:[]};
+    this.seriesSearch = this.seriesSearch.bind(this);
+    }
   render() {
     return (
         <MuiThemeProvider>
             <div>
-                <Header />
-                <Center />
+                <Header seriesSearch={this.seriesSearch}/>
+                <Center seriesForMap={this.state.series}/>
             </div>
         </MuiThemeProvider>
 
     )
+  }
+
+  seriesSearch(search) {
+      let xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "http://api.tvmaze.com/search/shows?q="+search, true);
+      xhttp.onreadystatechange = function(event) {
+          if (xhttp.readyState === XMLHttpRequest.DONE)
+          {
+              let response = JSON.parse(event.target.response);
+              this.setState( { series: response } )
+          }
+      }.bind(this);
+      xhttp.send();
   }
 
 }
