@@ -14,6 +14,7 @@
   "license": "ISC",
   "homepage": "https://github.com/afiorenza/react-builder#readme",
   "devDependencies": {
+    "arrow-mocha": "^1.0.1",
     "babel-core": "^6.17.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
@@ -21,7 +22,6 @@
     "browser-sync": "^2.6.5",
     "browserify": "^9.0.8",
     "del": "^1.1.1",
-    "firebase": "^3.6.1",
     "gulp": "^3.8.11",
     "gulp-changed": "^1.3.0",
     "gulp-concat": "^2.5.2",
@@ -29,9 +29,7 @@
     "gulp-nodemon": "^2.2.1",
     "gulp-util": "^3.0.7",
     "immutable": "^3.7.6",
-    "react": "^0.14.8",
     "react-bootstrap": "^0.28.1",
-    "reactfire": "^1.0.0",
     "resp-modifier": "^6.0.0",
     "rimraf": "^2.5.4",
     "run-sequence": "^1.1.0",
@@ -41,12 +39,20 @@
   "dependencies": {
     "classnames": "^1.2.2",
     "express": "^4.14.0",
-    "lodash": "^3.7.0",
+    "firebase": "^3.6.1",
+    "firedux": "^0.6.6",
+    "lodash": "^4.17.2",
+    "material-ui": "^0.16.4",
     "moment": "^2.10.2",
-    "react": "^0.14.8",
-    "react-dom": "^0.14.8",
-    "react-redux": "^4.4.6",
-    "react-router": "^0.13.6",
-    "redux": "^3.6.0"
+    "parse": "^1.9.2",
+    "re-base": "^2.3.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.0.0",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
+    "superagent": "^3.0.0",
+    "move-js": "0.5.0"
   }
 }

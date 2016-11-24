@@ -1,14 +1,17 @@
 import {addMovie, editMovie, deleteMovie, initialize} from '../applications/actions';
 import Center from './center';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Header from './header';
 import React from 'react';
 import store from '../applications/store';
 
+injectTapEventPlugin();
+
 class Series extends React.Component{
     constructor() {
     super();
-    this.state = { series:[]};
+    this.state = { series:[] };
     this.seriesSearch = this.seriesSearch.bind(this);
     }
   render() {
@@ -35,7 +38,6 @@ class Series extends React.Component{
       }.bind(this);
       xhttp.send();
   }
-
 }
 
 
