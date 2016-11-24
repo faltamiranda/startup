@@ -6,31 +6,38 @@ import store from '../applications/store';
 
 class Center extends React.Component{
     constructor(props) {
-    super(props);
-    this.state = { cast:[] };
-    this.castSearch = this.castSearch.bind(this);
+        super(props);
+        this.state = { cast:[] };
+        this.castSearch = this.castSearch.bind(this);
     }
     render() {
-		    return(
-			       <div>
-                <ListSearch seriesForMap={this.props.seriesForMap} castSearch={this.castSearch} castForMap={this.state.cast}/>
-             </div>
-		         );
-      }
+        return(
+            <div>
+                <ListSearch {...this.getListSearchProps()} />
 
-      castSearch(id) {
-          let xhttp = new XMLHttpRequest();
-          let idCast = id +"/cast";
-          xhttp.open("GET", 'http://api.tvmaze.com/shows/'+idCast, true);
-          xhttp.onreadystatechange = function(event) {
-              if (xhttp.readyState === XMLHttpRequest.DONE)
-              {
-                  let response = JSON.parse(event.target.response);
-                  this.setState( { cast: response } )
-              }
-          }.bind(this);
-          xhttp.send();
-      }
+            </div>
+        );
+    }
 
+    castSearch(id) {
+        let xhttp = new XMLHttpRequest();
+        let idCast = id +"/cast";
+        xhttp.open("GET", 'http://api.tvmaze.com/shows/'+idCast, true);
+        xhttp.onreadystatechange = function(event) {
+            if (xhttp.readyState === XMLHttpRequest.DONE)
+            {
+                let response = JSON.parse(event.target.response);
+                this.setState( { cast: response } )
+            }
+        }.bind(this);
+        xhttp.send();
+    }
+    getListSearchProps(){
+        return{
+            serie: this.props.serie,
+            castSearch: this.castSearch,
+            castForMap: this.state.cast
+        }
+    }
 }
 export default Center

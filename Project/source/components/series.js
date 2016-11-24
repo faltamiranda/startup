@@ -10,34 +10,34 @@ injectTapEventPlugin();
 
 class Series extends React.Component{
     constructor() {
-    super();
-    this.state = { series:[] };
-    this.seriesSearch = this.seriesSearch.bind(this);
+        super();
+        this.state = { serie:[] };
+        this.seriesSearch = this.seriesSearch.bind(this);
     }
-  render() {
-    return (
-        <MuiThemeProvider>
-            <div>
-                <Header seriesSearch={this.seriesSearch}/>
-                <Center seriesForMap={this.state.series}/>
-            </div>
-        </MuiThemeProvider>
+    render() {
+        return (
+            <MuiThemeProvider>
+                <div>
+                    <Header seriesSearch={this.seriesSearch}/>
+                    <Center serie={this.state.serie}/>
+                </div>
+            </MuiThemeProvider>
 
-    )
-  }
+        )
+    }
 
-  seriesSearch(search) {
-      let xhttp = new XMLHttpRequest();
-      xhttp.open("GET", "http://api.tvmaze.com/search/shows?q="+search, true);
-      xhttp.onreadystatechange = function(event) {
-          if (xhttp.readyState === XMLHttpRequest.DONE)
-          {
-              let response = JSON.parse(event.target.response);
-              this.setState( { series: response } )
-          }
-      }.bind(this);
-      xhttp.send();
-  }
+    seriesSearch(search) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "http://api.tvmaze.com/singlesearch/shows?q="+search, true);
+        xhttp.onreadystatechange = function(event) {
+            if (xhttp.readyState === XMLHttpRequest.DONE)
+            {
+                let response = JSON.parse(event.target.response);
+                this.setState( { serie: response } )
+            }
+        }.bind(this);
+        xhttp.send();
+    }
 }
 
 

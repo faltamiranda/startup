@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import {addMovie, editMovie, deleteMovie, initialize} from '../applications/actions';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import CastAndCrew from './castAndCrew';
 import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import store from '../applications/store';
@@ -8,57 +9,45 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 
 class ListSearch extends React.Component{
     constructor(props) {
-    super(props);
+        super(props);
+        this.renderHelper = this.renderHelper.bind(this);
     }
     render() {
-		    return(
-			       <div>
+        return(
+            <div>
+                {this.renderHelper()}
+            </div>
+        );
+    }
+    renderHelper(){
+        let helper=null;
+        if (this.props.serie){
 
-                {this.props.seriesForMap.map( (serie, index) => (
-                  <Card>
-                    <CardTitle title={serie.show.name} />
+            helper = (
+                <Card>
+                    <CardTitle title={this.props.serie.name} />
                     <CardMedia className="resize" >
-                        <img  src={serie.show.image.medium} />
+                        <img  src={this.props.serie.image} />
                     </CardMedia>
                     <CardText>
-                      Genres: {serie.show.genres}
+                        Genres: {this.props.serie.genres}
                     </CardText>
                     <CardText>
-                      Description: {serie.show.summary}
-                      <br/>
-                      <br/>
-                      Status: {serie.show.status}
+                        Description: {this.props.serie.summary}
+                        <br/>
+                        <br/>
+                        Status: {this.props.serie.status}
                     </CardText>
                     <CardActions >
-                        <RaisedButton label="Cast" onClick={this.props.castSearch.bind(this, serie.show.id)}/>
-                    </CardActions>
-                    <CardActions>
+                        <RaisedButton label="Cast" onClick={this.props.castSearch.bind(this, this.props.serie.id)}/>
                         <RaisedButton label="Favorite"/>
                     </CardActions>
-                    <CardText>
-                    <Table>
-                    <TableHeader adjustForCheckbox={false} displaySelectAll={false} > 
-                    <TableRow>
-                    <TableHeaderColumn>Name</TableHeaderColumn>
-                    <TableHeaderColumn>Character</TableHeaderColumn>
 
-                    </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                    {this.props.castForMap.map( (cast, index) => (
-                      <TableRow>
-                      <TableRowColumn>{cast.person.name}</TableRowColumn>
-                      <TableRowColumn>{cast.character.name}</TableRowColumn>
-                      </TableRow>
-                      ))}
-                    </TableBody>
-                    </Table>
-                    </CardText>
-                  </Card>
-                  ))}
-
-             </div>
-		         );
-      }
+                    <CastAndCrew cast={this.props.castForMap}/>
+                </Card>
+            )
+            return helper;
+        }
+    }
 }
 export default ListSearch
