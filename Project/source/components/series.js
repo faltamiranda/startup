@@ -4,6 +4,7 @@ import CastAndCrew from './castAndCrew';
 import Header from './header';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import ListFav from './listFav';
 import store from '../applications/store';
 import React from 'react';
 
@@ -13,21 +14,22 @@ class Series extends React.Component{
     constructor() {
         super();
         this.state = { serie:[],
-                      cast:[],
-                      person:[]
-                    };
+            cast:[],
+            person:[]
+        };
         this.renderIf = this.renderIf.bind(this);
         this.seriesSearch = this.seriesSearch.bind(this);
         this.castSearch = this.castSearch.bind(this);
         this.personSearch = this.personSearch.bind(this);
+        this.home = this.home.bind(this);
     }
 
     render() {
         return (
             <MuiThemeProvider>
                 <div>
-                <Header seriesSearch={this.seriesSearch} / >
-                {this.renderIf()}
+                    <Header seriesSearch={this.seriesSearch} seriesSearchHome={this.home} / >
+                    {this.renderIf()}
                 </div>
             </MuiThemeProvider>
 
@@ -35,23 +37,26 @@ class Series extends React.Component{
     }
 
     renderIf(){
-      let renderIF = null;
-      let idCast = this.props.params.idCast;
-      let idPerson = this.props.params.idPerson;
-      if (idCast)
-      {
-        {this.castSearch(idCast)};
-         renderIF = (<div> <CastAndCrew cast={this.state.cast} /> </div>);
-      }
-      else if (idPerson){
-        {this.personSearch(idPerson)};
-        renderIF = (<div> <Center person={this.state.person} /> </div>);
-      }
-      else{
-         renderIF= (<div> <Center serie={this.state.serie}/></div>);
-      }
-
-      return renderIF;
+        let renderIF = null;
+        let idCast = this.props.params.idCast;
+        let idPerson = this.props.params.idPerson;
+        let favorites = "/favorites";
+        if (idCast)
+        {
+            {this.castSearch(idCast)};
+            renderIF = (<div> <CastAndCrew cast={this.state.cast} /> </div>);
+        }
+        else if (idPerson){
+            {this.personSearch(idPerson)};
+            renderIF = (<div> <Center person={this.state.person}  /> </div>);
+        }
+        else if (window.location.pathname === favorites){
+            renderIF = (<div><ListFav /> </div>);
+        }
+        else{
+            renderIF= (<div> <Center serie={this.state.serie}/></div>);
+        }
+        return renderIF;
     }
 
     seriesSearch(search) {
@@ -92,6 +97,10 @@ class Series extends React.Component{
         }.bind(this);
         xhttp.send();
     }
+    home(){
+        this.setState ({serie:[]})
+    }
+
 }
 
 
