@@ -10,6 +10,8 @@ class Rout extends React.Component {
       <Provider store={store}>
         <Router history={browserHistory}>
           <Route path='/' component={Series} />
+          <Route path='/cast/(:idCast)' component={Series}/>
+          <Route path='/person/(:idPerson)' component={Series}/>
         </Router>
       </Provider>
     )

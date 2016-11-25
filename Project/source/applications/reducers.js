@@ -1,31 +1,28 @@
-import {ADD_MOVIE, EDIT_MOVIE, DELETE_MOVIE, INITIALIZE} from './actions'
+import _ from 'lodash';
+import {ADD_FAV, DELETE_FAV,INITIALIZE} from './actions'
 
-const reducers = (state = [{ moviesState:{} }], action) => {
+const reducers = (state = [{ favs:{} }], action) => {
   switch (action.type) {
     case INITIALIZE:
-    state.moviesState = [];
-    if (localStorage.getItem('movies')) {
-       state.moviesState = JSON.parse(localStorage.getItem('movies'));
-    }
-    return state
+   state.favs = [];
+   if (localStorage.getItem('favs')) {
+      state.favs = JSON.parse(localStorage.getItem('favs'));
+   }
+   return state
 
-    case ADD_MOVIE:
-    state.moviesState.push(action.movies);
-    localStorage.setItem("movies", JSON.stringify(state.moviesState));
-    return state.moviesState
+    case ADD_FAV:
+    state.favs.push(action.serie);
+    localStorage.setItem("favs", JSON.stringify(state.favs));
 
-    case EDIT_MOVIE:
-    state.moviesState.splice(action.indexMovie, 1, action.movie);
-    localStorage.setItem("movies", JSON.stringify(state.moviesState));
-    return state.moviesState
+    return state.favs
 
-    case DELETE_MOVIE:
-    state.moviesState.splice(action.indexMovie, 1);
-    localStorage.setItem("movies", JSON.stringify(state.moviesState));
-    return state.moviesState
+    case DELETE_FAV:
+    state.favs.splice(action.serie, 1);
+    localStorage.setItem("favs", JSON.stringify(state.favs));
+    return state.favs
 
     default:
-      return
+
   }
 }
 

@@ -1,19 +1,15 @@
-export const ADD_MOVIE = 'ADD_MOVIE'
-export const EDIT_MOVIE = 'EDIT_MOVIE'
-export const DELETE_MOVIE = 'DELETE_MOVIE'
+export const ADD_FAV = 'ADD_FAV'
+export const DELETE_FAV = 'DELETE_FAV'
 export const INITIALIZE = 'INITIALIZE'
 
-export function addMovie(movie) {
-  return { type: ADD_MOVIE, movies:movie }
+export function addFav(serie) {
+  return { type: ADD_FAV, serie:serie }
 }
 
-export function editMovie(index,movie) {
-  return { type: EDIT_MOVIE, indexMovie:index, movie:movie }
+export function deleteFav(index,serie) {
+  return { type: DELETE_FAV, index:index, serie:serie }
 }
 
-export function deleteMovie(index) {
-  return { type: DELETE_MOVIE, indexMovie:index }
-}
 export function initialize(){
   return { type: INITIALIZE }
 }
